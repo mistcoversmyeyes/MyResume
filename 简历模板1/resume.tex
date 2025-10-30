@@ -1,5 +1,7 @@
 \documentclass{resume}
-\usepackage{zh_CN-Adobefonts_external} 
+\linespread{1.5} % 1.2倍行距
+\usepackage{xeCJK}
+% \setCJKmainfont{SimSun} % 可选：指定宋体为主字体
 \usepackage{linespacing_fix}
 \usepackage{cite}
 \usepackage{hyperref}
@@ -26,10 +28,10 @@
 %***********个人信息**************
 \MyName{蒋昱铭}
 \sepspace
-\SimpleEntry{XXX国家重点实验室}
+% \SimpleEntry{XXX国家重点实验室}
 \SimpleEntry{mingjiangyu1@qq.com}
 \SimpleEntry{19802055081}
-\SimpleEntry{个人主页：\href{https://doublelll3.ml}{https://doublelll3.ml}}
+\SimpleEntry{Gihub:\href{https://github.com/mistcoversmyeyes}{https://github.com/mistcoversmyeyes}}
 
 %************照片**************
 %照片需要放到images文件夹下，名字必须是you.jpg，注意.jpg后缀（可以去resume.cls第101行处修改），如果不需要照片可以不添加此行命令
@@ -40,32 +42,51 @@
 \section{教育背景}
 %***第一个大括号里的内容向左对齐，第二个大括号里的内容向右对齐
 %***\textbf{}括号里的字是粗体，\textit{}括号里的字是斜体
-\datedsubsection{\textbf{华南理工大学(985)}，软件工程，\textit{本科}}{2023.9 - 至今}
+\datedsubsection{\textbf{华南理工大学(985)}，软件工程，\textit{本科}}{2023.9 - 2027.9}
 % \datedsubsection{\textbf{xxxx大学}，xxxxxx及控制，\textit{本科}}{2014.9 - 2018.7}
 \begin{itemize}
+% \setstretch{1.5}
   \item 专业基础课程学习扎实，数据结构与算法（91），算法设计与分析（89），离散数学（90），计算机组成原理（94）。 
-  \item CSAPP, CS149, CMU15-445
+  \item 课外自主探索学习：CS106X（C++编程 \&\& 数据结构实现）、CSAPP（计算机系统基础），CS149（并行编程），CMU15-445（数据库系统原理）
 \end{itemize}
+
+\section{专业技能}
+\setstretch{1.2}
+\datedsubsection{\textbf{C++}：具备扎实的 \textbf{C++} 基础，掌握 \textbf{RAII} 范式，熟悉 \textbf{STL} 常用容器，熟悉面向对象编程。%
+                熟悉 \textbf{C++17/14/11} 常用特性，了解部分底层实现（\textbf{原子类型}、\textbf{移动语义}、\textbf{智能指针}、\textbf{异步机制}）}{} %
+\vspace{0.3em}
+\datedsubsection{\textbf{Rust}：熟悉 \textbf{Rust} 编程思想（\textbf{所有权}/\textbf{借用}/\textbf{生命周期}、\textbf{错误处理}），熟悉 \textbf{Cargo} 包管理与构建，能够快速集成使用主流的库}{}
+\vspace{0.3em}
+\datedsubsection{\textbf{并行编程}：了解并行编程思想，能够理解不同工作负载下并行程序的瓶颈。熟悉 \textbf{SIMD \&\& SPMD} 编程模型，能够熟练使用 \textbf{AVX2}/\textbf{512} 内建函数向量化无数据依赖代码。能够使用 ISPC 编译器生成多核向量化代码}{}
+\vspace{0.3em}
+\datedsubsection{\textbf{AI相关}：了解 \textbf{LLM}、\textbf{VLM} 基本架构。了解 \textbf{vLLM}、\textbf{PyTorch} 等模型训练推理框架。了解 \textbf{AI Agent} 工作流 }{}
+\vspace{0.3em}
+\datedsubsection{\textbf{工具}：熟悉 \textbf{Linux} 基本命令，熟练使用 \textbf{VS Code}、\textbf{CLion}、\textbf{Vim} 进行高效开发与调试，掌握 \textbf{Git} 分支管理与协作流程，能编写和维护 \textbf{Makefile}、\textbf{Cargo} 构建脚本，熟练使用 \textbf{GDB} 进行程序调试与性能分析，了解 \textbf{GitHub Actions} 自动化构建与测试，能用 \textbf{Docker} 构建开发环境与部署应用，熟悉 \textbf{Shell} 脚本、远程开发等。}{}
+\vspace{0.3em}
+\datedsubsection{\textbf{英语}：通过 \textbf{CET-6}（480分），具备良好的英文文档阅读与技术交流能力。}{}
+\sepspace
 
 %***********过往经历**************
 \section{项目经历}
-\datedsubsection{\textbf{C++17开发的高性能磁盘缓冲区}}{2025.9 - 2025.10}
+\datedsubsection{\textbf{高性能磁盘缓冲区（C++17）}}{2025.9 - 2025.10}
+\setstretch{1.5}
 \begin{itemize}
   \item 实现了自适应缓存替换算法（Arc缓存替换算法） ，避免一过性访问造成的高频访问数据丢失。同时支持动态调整缓冲区参数设置，以适应当前工作负载的 “时间局部性” 和 “空间局部性” 特征，提高缓存命中率。
-  \item 实现异步磁盘 I/O，将磁盘刷写吞吐从 A MB/s 提升至 B MB/s（+Z\%）（\textbf{TODO：}补充 A/B/Z 的基准数据与测试环境描述）。
+  \item 实现异步磁盘 I/O，避免 I/O 停顿延长页面锁的持有时间%将磁盘刷写吞吐从 A MB/s 提升至 B MB/s（+Z\%）（\textbf{TODO：}补充 A/B/Z 的基准数据与测试环境描述）。
   \item 运用 RAII 范式，实现线程安全的页读写保护器。
-  \item 通过 {perf}/Flamegraph 定位热点，优化关键路径；p99 延迟下降 N\%（\textbf{TODO：}补充 N 与样本规模）。
+  % \item （\textbf{TODO}）使用 \texttt{perf}/Flamegraph 定位热点，优化关键路径；p99 延迟目标下降 N\%。
 \end{itemize}
 
-\datedsubsection{\textbf{wget 命令行工具 (Rust)} \href{https://github.com/mistcoversmyeyes/wget-DragonOS}{\scriptsize[GitHub]}}{2025.7 - 2025.8}
+\datedsubsection{\textbf{wget 命令行工具 （Rust）} \href{https://github.com/mistcoversmyeyes/wget-DragonOS}{\scriptsize[GitHub]}}{2025.7 - 2025.8}
+\setstretch{1.4}
 \begin{itemize}
-  \item 从零开始实现了一个功能对标 `wget` 的命令行下载工具，通过直接操作 TCP 套接字（`std::net::TcpStream`）发送 HTTP GET/HEAD 请求，手动解析 HTTP 响应报文，实现了对网络协议底层的控制。
-  \item 设计并实现了一套模块化的架构，将项目解耦为命令行接口（`cli`）、网络核心（`web`）、文件写入（`FileWriter`）和日志（`log`）四个核心模块，提升了代码的可维护性和扩展性。
-  \item 使用 {clap} 库构建了健壮的命令行接口，支持 URL、指定输出文件名（{-O}）和调试模式（{-d}）等核心参数。
+  \item 从零开始实现了一个功能对标 \texttt{wget} 的命令行下载工具，通过直接操作 TCP 套接字（\texttt{std::net::TcpStream}）发送 HTTP GET/HEAD 请求，手动解析 HTTP 响应报文。
+  \item 设计并实现了模块化架构：命令行接口（\texttt{cli}）、网络核心（\texttt{web}）、文件写入（\texttt{FileWriter}）和日志（\texttt{log}）。
+  \item 使用 \texttt{clap} 构建命令行接口，支持 URL、指定输出文件名（\texttt{-O}）和调试模式（\texttt{-d}）。
   \item 通过发送 HTTP HEAD 请求预先获取 `Content-Length`，并利用文件句柄的 `seek` 操作，为未来实现断点续传功能奠定了基础。
-  \item \textbf{TODO：}支持 HTTPS/TLS（{rustls}）、3xx 重定向与超时/重s试（指数退避），提升长文件下载稳定性（失败率由 X\% \textrightarrow{} Y\%）。
-  \item \textbf{TODO：}实现断点续传（Range/206）、并发分片与限速；预计吞吐 A \textrightarrow{} B MB/s，p95 时延降低 N\%。
-  \item \textbf{TODO：}引入结构化日志与指标（{tracing}/Prometheus），完善基准测试矩阵与 GitHub Actions 多平台构建发布。
+  % \item \textbf{TODO：}支持 HTTPS/TLS（\texttt{rustls}）、3xx 重定向与超时/重试（指数退避），提升长文件下载稳定性（失败率由 X\% \textrightarrow{} Y\%）。
+  % \item \textbf{TODO：}实现断点续传（Range/206）、并发分片与限速；预计吞吐 A \textrightarrow{} B MB/s，p95 时延降低 N\%。
+  % \item \textbf{TODO：}引入结构化日志与指标（\texttt{tracing}/Prometheus），完善基准测试矩阵与 GitHub Actions 多平台构建发布。
 \end{itemize}
 
 % \datedsubsection{\textbf{xxx研究院（实习）}，xxxx实习生}{2020.1 - 2020.5}
@@ -86,10 +107,6 @@
 % {搭建xxx，利用xxx的输出，实现对xxx的控制。}
 % {1.实现了xxx；2.获得了xxx奖等荣誉。}
 
-\section{专业技能}
-\datedsubsection{\textbf{编程语言}：\textbf{C++17/14/11}（STL/并发/内存模型/RAII）、\textbf{Rust}（所有权/借用/生命周期、错误处理、async/await）}{}
-\datedsubsection{fjdsia f}
-\sepspace
 
 \section{奖励荣誉}
 % \datedsubsection{\textbf{比赛方面}:}{}
